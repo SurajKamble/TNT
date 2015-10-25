@@ -8,15 +8,15 @@ from node import Node
 
 
 class Tree():  # Tree structure
-
-    numberOfTurns = 0
-    possiblePositions = 0
-    leafNode = [1, 0, -1]
-    entries = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    visitedNodes = []
-    computerTurn = False
-    userWin = False
-    compWin = False
+    def __init__(self):
+        self.numberOfTurns = 0
+        self.possiblePositions = 0
+        self.leafNode = [1, 0, -1]
+        self.entries = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        self.visitedNodes = []
+        self.computerTurn = False
+        self.userWin = False
+        self.compWin = False
 
     def checkWin(self, grid):
         b = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [3, 5, 8], [0, 4, 8], [2, 4, 6]]

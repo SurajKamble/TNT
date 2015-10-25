@@ -2,7 +2,6 @@ __author__ = 'Suraj'
 # Updated
 
 from tree import Tree
-from node import Node
 
 tree = Tree()
 tree.userTurn()
