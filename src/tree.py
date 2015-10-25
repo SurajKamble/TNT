@@ -38,9 +38,6 @@ class Tree():  # Tree structure
             return self.userWin
             '''
 
-
-
-
     def display(self, entries):  # Prints the present board position
         print('\n %s | %s | %s' % (entries[0], entries[1], entries[2]))
         print('---|---|---')
@@ -55,6 +52,7 @@ class Tree():  # Tree structure
         self.computerTurn = True
         return self.entries
 
+    '''
     def emptySpaces(self, grid):
         emptySpaces = 0
         if grid is not None:
@@ -62,14 +60,18 @@ class Tree():  # Tree structure
                 if grid[i] == ' ':
                     emptySpaces += 1
         return emptySpaces
+        '''
 
     def compTurn(self):
         board = Node(self.entries)
         self.dfs(board)
+        for i in range(len(board.children)):
+            print(self.display(board.children[i].grid))
 
     def dfs(self, board):  # Something's wrong with numberOfTurns. Fix it
         if bool(board is not None):
             if bool(board.numberOfChildrenPossible <= 0):
+                print('Board with children <= 0', board.grid)
                 return
             print('possible', board.numberOfChildrenPossible)
             self.visitedNodes.append(board.grid)
@@ -78,16 +80,14 @@ class Tree():  # Tree structure
             self.display(board.grid)
             print('board.visited', board.visited)
             board1 = copy.deepcopy(board)
-            board2 = copy.deepcopy(board)
             next1 = self.generateNextBoard(board1)
 
             print('numberOfPossibleChildren before', board.numberOfChildrenPossible)
             nextBoard = board
             if board not in self.visitedNodes:
                 nextBoard = board.add(next1)
-            board.numberOfChildrenPossible -= 1
-            if bool(self.checkWin(board.grid)):
-                board.numberOfChildrenPossible = -1
+            if board.numberOfChildrenPossible != 0:
+                board.numberOfChildrenPossible -= 1
             print('numberOfPossibleChildren After', board.numberOfChildrenPossible)
             '''
              if next1 not in self.visitedNodes:
@@ -100,9 +100,9 @@ class Tree():  # Tree structure
                 '''
             board = nextBoard
             self.dfs(board)
-            print('next Iteration')
-            emptySpaces = self.emptySpaces(board.grid)  # Add functionality for emptySpaces
-            if bool(board is not None) & bool(emptySpaces != 0):
+            print('next Iteration', board.grid)
+            #  emptySpaces = self.emptySpaces(board.grid)  # Add functionality for emptySpaces
+            if bool(board.parent is not None) & bool(board.parent.numberOfChildrenPossible >= 0):  # emptySpaces != 0
                 print('In Parent')
                 self.dfs(board.parent)
 

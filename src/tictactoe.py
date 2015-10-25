@@ -2,6 +2,16 @@ __author__ = 'Suraj'
 # Updated
 
 from tree import Tree
+from node import Node
+
+'''
+grid = ['X', 'O', 'X',
+        'X', 'O', 'X',
+        'X', 'X', 'O']
+node = Node(grid)
+
+print(node.checkUserWin(grid))
+'''
 
 tree = Tree()
 tree.userTurn()
