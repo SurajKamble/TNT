@@ -18,6 +18,7 @@ class Tree():  # Tree structure
         self.userWin = False
         self.compWin = False
 
+    '''
     def checkWin(self, grid):
         b = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [3, 5, 8], [0, 4, 8], [2, 4, 6]]
         for i in range(len(b)):
@@ -30,7 +31,7 @@ class Tree():  # Tree structure
                 return self.compWin
         return False
 
-    '''    if (bool(grid[:3] == ['X', 'X', 'X']) | bool(grid[3:6] == ['X', 'X', 'X']) | bool(grid[6:9] == ['X', 'X', 'X']) | bool(
+       if (bool(grid[:3] == ['X', 'X', 'X']) | bool(grid[3:6] == ['X', 'X', 'X']) | bool(grid[6:9] == ['X', 'X', 'X']) | bool(
                         grid[::2] == ['X', 'X', 'X']) | bool(grid[:2] == ['X', 'X', 'X']) | bool(
                         grid[:2] == ['X', 'X', 'X']) | bool(grid[:2] == ['X', 'X', 'X']) | bool(
                         grid[:2] == ['X', 'X', 'X'])):
@@ -71,24 +72,24 @@ class Tree():  # Tree structure
     def dfs(self, board):  # Something's wrong with numberOfTurns. Fix it
         if bool(board is not None):
             if bool(board.numberOfChildrenPossible <= 0):
-                print('Board with children <= 0', board.grid)
+                #  print('Board with children <= 0', board.grid)
                 return
-            print('possible', board.numberOfChildrenPossible)
+            #  print('possible', board.numberOfChildrenPossible)
             self.visitedNodes.append(board.grid)
             print('Node')
-            print(self.computerTurn)
+            #  print(self.computerTurn)
             self.display(board.grid)
-            print('board.visited', board.visited)
+            #  print('board.visited', board.visited)
             board1 = copy.deepcopy(board)
             next1 = self.generateNextBoard(board1)
 
-            print('numberOfPossibleChildren before', board.numberOfChildrenPossible)
+            #  print('numberOfPossibleChildren before', board.numberOfChildrenPossible)
             nextBoard = board
             if board not in self.visitedNodes:
                 nextBoard = board.add(next1)
             if board.numberOfChildrenPossible != 0:
                 board.numberOfChildrenPossible -= 1
-            print('numberOfPossibleChildren After', board.numberOfChildrenPossible)
+            #  print('numberOfPossibleChildren After', board.numberOfChildrenPossible)
             '''
              if next1 not in self.visitedNodes:
                 nextBoard = board.add(next1)
@@ -100,7 +101,7 @@ class Tree():  # Tree structure
                 '''
             board = nextBoard
             self.dfs(board)
-            print('next Iteration', board.grid)
+            #  print('next Iteration', board.grid)
             #  emptySpaces = self.emptySpaces(board.grid)  # Add functionality for emptySpaces
             if bool(board.parent is not None) & bool(board.parent.numberOfChildrenPossible >= 0):  # emptySpaces != 0
                 print('In Parent')
@@ -117,7 +118,7 @@ class Tree():  # Tree structure
                     else:
                         board.grid[i] = 'X'
                         break
-        print('generatedNode', board.grid)
+        #  print('generatedNode', board.grid)
         return board.grid
 
     '''
